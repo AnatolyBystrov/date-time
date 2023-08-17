@@ -20,7 +20,6 @@ class TemporalTests {
     }
 
     @Test
-    @Disabled
     void test() {
         LocalDate birthDateAS = /* LocalDate.of(1799, 6, 6); */ LocalDate.parse("1799-06-06");
         LocalDate barMizvaAS = birthDateAS.plusYears(130);
