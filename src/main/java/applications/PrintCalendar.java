@@ -2,15 +2,13 @@ package applications;
 
 import java.time.*;
 import java.time.format.TextStyle;
-import java.time.temporal.TemporalAdjusters;
 import java.util.Locale;
 
 public class PrintCalendar {
     private static final int TITLE_OFFSET = 10;
     private static final int WEEK_DAYS_OFFSET = 2;
     private static final int COLUMN_WIDTH = 4;
-    private static DayOfWeek[] weekDays = DayOfWeek.values();
-    private static Locale LOCALE = Locale.getDefault();
+    private static final Locale LOCALE = Locale.getDefault();
 
     public static void main(String[] args) {
         try {
@@ -25,14 +23,14 @@ public class PrintCalendar {
     }
 
     private static void printCalendar(RecordArguments recordArguments) throws Exception {
-        printTitle(recordArguments.month(), recordArguments.year());
-        printWeekDays(recordArguments.firstDay());
-        printDays(recordArguments.month(), recordArguments.year(), recordArguments.firstDay());
+        printTitle(recordArguments);
+        printWeekDays(recordArguments.getFirstDay());
+        printDays(recordArguments);
     }
 
-    private static void printDays(int month, int year, DayOfWeek firstDayOfWeek) {
-        int nDays = getMonthDays(month, year);
-        int currentWeekDay = getFirstMonthWeekDay(month, year, firstDayOfWeek);
+    private static void printDays(RecordArguments recordArguments) {
+        int nDays = recordArguments.getMonthDays();
+        int currentWeekDay = recordArguments.getFirstMonthWeekDay();
         System.out.printf("%s", " ".repeat(getFirstColumnOffset(currentWeekDay)));
         for (int day = 1; day <= nDays; day++) {
             System.out.printf("%4d", day);
@@ -49,30 +47,17 @@ public class PrintCalendar {
         return COLUMN_WIDTH * (currentWeekDay - 1);
     }
 
-    private static int getFirstMonthWeekDay(int month, int year, DayOfWeek firstDayOfWeek) {
-        LocalDate firstDayOfMonth = LocalDate.of(year, month, 1);
-        int dayOfWeekValue = firstDayOfMonth.getDayOfWeek().getValue();
-        int daysUntilFirstDayOfWeek = (dayOfWeekValue + 7 - firstDayOfWeek.getValue()) % 7;
-        return (daysUntilFirstDayOfWeek + 1);
-    }
-
-    private static int getMonthDays(int month, int year) {
-        YearMonth ym = YearMonth.of(year, month);
-        return ym.lengthOfMonth();
-    }
-
     private static void printWeekDays(DayOfWeek firstDayOfWeek) {
         for (int i = 0; i < DayOfWeek.values().length; i++) {
             DayOfWeek currentDay = DayOfWeek.of((firstDayOfWeek.getValue() + i - 1) % 7 + 1);
-            System.out.printf("%s", " ".repeat(WEEK_DAYS_OFFSET));
-            System.out.printf("%s", currentDay.getDisplayName(TextStyle.SHORT, LOCALE));
+            System.out.printf("%s%s", " ".repeat(WEEK_DAYS_OFFSET), currentDay.getDisplayName(TextStyle.SHORT, LOCALE));
         }
         System.out.println();
     }
 
-    private static void printTitle(int month, int year) {
-        Month monthEn = Month.of(month);
-        System.out.printf("%s%s  %d\n", " ".repeat(TITLE_OFFSET), monthEn.getDisplayName(TextStyle.FULL, LOCALE), year);
+    private static void printTitle(RecordArguments recordArguments) {
+        Month monthEn = Month.of(recordArguments.getMonth());
+        System.out.printf("%s%s  %d\n", " ".repeat(TITLE_OFFSET), monthEn.getDisplayName(TextStyle.FULL, LOCALE), recordArguments.getYear());
     }
 
     private static RecordArguments getRecordArguments(String[] args) throws Exception {

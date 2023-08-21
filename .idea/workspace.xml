@@ -4,11 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="30b77d07-d823-4507-9568-31f738a71e61" name="Changes" comment="HW24">
-      <change afterPath="$PROJECT_DIR$/src/main/java/applications/PrintCalendar.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/applications/RecordArguments.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/telran/time/NextFriday13.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/telran/time/NextFriday13.java" afterDir="false" />
+    <list default="true" id="30b77d07-d823-4507-9568-31f738a71e61" name="Changes" comment="HW25">
+      <change beforePath="$PROJECT_DIR$/src/main/java/applications/PrintCalendar.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/applications/PrintCalendar.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/applications/RecordArguments.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/applications/RecordArguments.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -148,11 +146,20 @@
       <option name="project" value="LOCAL" />
       <updated>1692291589031</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="HW25">
+      <option name="closed" value="true" />
+      <created>1692635607304</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1692635607304</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="HW24" />
-    <option name="LAST_COMMIT_MESSAGE" value="HW24" />
+    <MESSAGE value="HW25" />
+    <option name="LAST_COMMIT_MESSAGE" value="HW25" />
   </component>
 </project>
