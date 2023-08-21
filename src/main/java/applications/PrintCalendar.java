@@ -82,7 +82,7 @@ public class PrintCalendar {
         if (args.length > 2) {
             return DayOfWeek.valueOf(args[2].toUpperCase());
         }
-        return DayOfWeek.MONDAY;
+        return DayOfWeek.SATURDAY;
     }
 
     private static int getMonthArg(String[] args) throws Exception {
