@@ -48,11 +48,22 @@ public class PrintCalendar {
     }
 
     private static void printWeekDays(DayOfWeek firstDayOfWeek) {
-        for (int i = 0; i < DayOfWeek.values().length; i++) {
-            DayOfWeek currentDay = DayOfWeek.of((firstDayOfWeek.getValue() + i - 1) % 7 + 1);
+        DayOfWeek[] orderedWeekDays = getOrderedWeekDays(firstDayOfWeek);
+        for (DayOfWeek currentDay : orderedWeekDays) {
             System.out.printf("%s%s", " ".repeat(WEEK_DAYS_OFFSET), currentDay.getDisplayName(TextStyle.SHORT, LOCALE));
         }
         System.out.println();
+    }
+
+    private static DayOfWeek[] getOrderedWeekDays(DayOfWeek firstDayOfWeek) {
+        DayOfWeek[] weekDays = DayOfWeek.values();
+        DayOfWeek[] orderedWeekDays = new DayOfWeek[7];
+        int startIdx = firstDayOfWeek.getValue() - 1;
+        for (int i = 0; i < 7; i++) {
+            orderedWeekDays[i] = weekDays[startIdx];
+            startIdx = (startIdx + 1) % 7;
+        }
+        return orderedWeekDays;
     }
 
     private static void printTitle(RecordArguments recordArguments) {
