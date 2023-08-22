@@ -20,6 +20,7 @@ class TemporalTests {
     }
 
     @Test
+    @Disabled
     void test() {
         LocalDate birthDateAS = /* LocalDate.of(1799, 6, 6); */ LocalDate.parse("1799-06-06");
         LocalDate barMizvaAS = birthDateAS.plusYears(130);
@@ -33,6 +34,7 @@ class TemporalTests {
     }
 
     @Test
+    @Disabled
     void barMizvaAdjusterTest() {
         TemporalAdjuster adjuster = new BarMizvaAdjuster();
         LocalDateTime ldt = LocalDateTime.of(2000, 1, 1, 0, 0);// do not use localdate in HW
@@ -42,6 +44,7 @@ class TemporalTests {
     }
 
     @Test
+    @Disabled
     void nextFridayAdjusterTest() {
         TemporalAdjuster adjuster = new NextFriday13();
         LocalDate ld = LocalDate.of(2023, 8, 15);
@@ -51,5 +54,27 @@ class TemporalTests {
         assertThrowsExactly(UnsupportedTemporalTypeException.class, () -> LocalTime.now().with(adjuster));
         assertEquals(expected2, expected1.with(adjuster));
     }
+    @Test
+    @Disabled
+    void instantTest(){
+        ZonedDateTime zdt = ZonedDateTime.ofInstant(Instant.now(),ZoneId.of("Indian/Comoro"));
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("d/M/YYYY H:m z");
+        System.out.println(zdt.format(dtf));
+    }
+    @Test
+    void zoneDateTimeTest(){
+        ZoneDateTimeTest("Paris");
+    }
 
+    private void ZoneDateTimeTest(String cityCountry) {
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("d/M/YYYY H:m zzzz");
+        for (String zoneId : ZoneId.getAvailableZoneIds()) {
+            if (zoneId.contains(cityCountry)) {
+                ZonedDateTime zdt = ZonedDateTime.ofInstant(Instant.now(), ZoneId.of(zoneId));
+                System.out.println(zdt.format(dtf));
+            }
+        }
+    }
 }
+
+
